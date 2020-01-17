@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const app = express();
-app.use(express.json());
 
 mongoose.connect('mongodb+srv://omnistack:omnistackweek@cluster0-iayyk.mongodb.net/week10?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -14,9 +14,8 @@ mongoose.connect('mongodb+srv://omnistack:omnistackweek@cluster0-iayyk.mongodb.n
 // Tipos de parâmetros:
 // Query Params, Route Params and Body
 
-app.post('/', (request, response) => {
-    console.log(request.body);
-    return response.json({ message:'Hello World Omnistack!'});
-});
+
+app.use(express.json());
+app.use(routes);
 
 app.listen(3333);
